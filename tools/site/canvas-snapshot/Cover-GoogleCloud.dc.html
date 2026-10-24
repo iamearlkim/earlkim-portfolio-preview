@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cover — Agent Skills for Documentation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#F6F6F3}
+@keyframes gcd-spin{to{transform:rotate(360deg)}}
+@keyframes gcd-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes gcd-glow{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes gcd-blink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.gcd-anim{animation:none!important}}
+</style>
+</helmet>
+<div style="font-family: 'Instrument Sans', system-ui, sans-serif; color: #121316; width: 1200px; height: 620px; position: relative; overflow: hidden; background: #FBFBF9; -webkit-font-smoothing: antialiased">
+
+  <!-- soft Google-palette light -->
+  <div aria-hidden="true" style="position: absolute; inset: 0">
+    <div style="position: absolute; width: 520px; height: 520px; left: -140px; top: -180px; border-radius: 50%; background: #4285F4; opacity: .16; filter: blur(90px)"></div>
+    <div style="position: absolute; width: 460px; height: 460px; right: -120px; top: -120px; border-radius: 50%; background: #EA4335; opacity: .12; filter: blur(90px)"></div>
+    <div style="position: absolute; width: 480px; height: 480px; left: 180px; bottom: -300px; border-radius: 50%; background: #FBBC04; opacity: .14; filter: blur(90px)"></div>
+    <div style="position: absolute; width: 440px; height: 440px; right: 120px; bottom: -280px; border-radius: 50%; background: #34A853; opacity: .14; filter: blur(90px)"></div>
+  </div>
+
+  <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 760px; display: flex; flex-direction: column; gap: 14px">
+
+    <!-- prompt box with gradient ring -->
+    <div style="position: relative; border-radius: 22px; padding: 2px; background: linear-gradient(90deg, #34A853, #4285F4, #EA4335, #FBBC04, #34A853); background-size: 200% 100%; animation: gcd-shimmer 6s linear infinite; box-shadow: 0 24px 60px -24px rgba(66,133,244,.45)" class="gcd-anim">
+      <div style="border-radius: 20px; background: #FFFFFF; padding: 22px 24px 18px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 22px; line-height: 1.3">
+          <span style="background: #E8F0FE; color: #1A57C9; font-weight: 600; font-size: 18px; border-radius: 8px; padding: 4px 10px">/fix-403-forbidden</span>
+          <span>my endpoint call returns 403</span>
+          <span class="gcd-anim" style="width: 2px; height: 26px; background: #121316; animation: gcd-blink 1s steps(1) infinite"></span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #4A4C53">
+            <span style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #DADCE0; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; color: #4A4C53">+</span>
+            <span style="border: 1px solid #DADCE0; border-radius: 999px; padding: 5px 12px">Skill · Troubleshooting</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; color: #1A57C9">
+            <span class="gcd-anim" style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid #C6D6FB; border-top-color: #1A73E8; animation: gcd-spin .9s linear infinite"></span>
+            Agent is running · step 3 of 4
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- agent run panel -->
+    <div style="border-radius: 20px; background: rgba(255,255,255,.88); border: 1px solid #E2E2DC; padding: 18px 24px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 12px 40px -24px rgba(18,19,22,.25)">
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 16px">
+        <span style="width: 22px; height: 22px; border-radius: 50%; background: #34A853; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600">✓</span>
+        <span>Identify which identity is calling the endpoint</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 16px">
+        <span style="width: 22px; height: 22px; border-radius: 50%; background: #34A853; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600">✓</span>
+        <span>Check current IAM roles on the project</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 16px">
+        <span class="gcd-anim" style="width: 18px; height: 18px; margin: 2px; border-radius: 50%; border: 2px solid #C6D6FB; border-top-color: #1A73E8; animation: gcd-spin .9s linear infinite"></span>
+        <span class="gcd-anim" style="font-weight: 600; background: linear-gradient(90deg, #121316 0%, #121316 40%, #8AB4F8 50%, #121316 60%, #121316 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gcd-shimmer 2.4s linear infinite">Grant Vertex AI User role — waiting for your approval</span>
+        <span style="margin-left: auto; font-size: 13px; font-weight: 600; color: #FFFFFF; background: #1A73E8; border-radius: 999px; padding: 6px 14px">Approve</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #8A8C93">
+        <span style="width: 18px; height: 18px; margin: 2px; border-radius: 50%; border: 2px solid #DADCE0"></span>
+        <span>Re-run test to verify access</span>
+      </div>
+      <div style="border-top: 1px solid #ECECE6; padding-top: 10px; font-size: 13px; color: #4A4C53; display: flex; align-items: center; gap: 8px">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #4285F4"></span>
+        Grounded in Google Cloud docs · Agent Platform access control with IAM
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":620}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

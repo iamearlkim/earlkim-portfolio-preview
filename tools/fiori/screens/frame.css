@@ -1,0 +1,22 @@
+/* Shared Fiori page frame. Colors and fonts come from the active SAP theme via CSS variables. */
+html, body { margin: 0; height: 100%; }
+body { background: var(--sapBackgroundColor); font-family: var(--sapFontFamily); color: var(--sapTextColor); }
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.header { background: var(--sapObjectHeader_Background, var(--sapBaseColor)); box-shadow: var(--sapContent_HeaderShadow); padding: 1rem 2rem 1.25rem; position: relative; z-index: 1; }
+.pagetitle { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+.subtitle { color: var(--sapContent_LabelColor); font-size: var(--sapFontSmallSize); display: flex; gap: 1.5rem; margin: .25rem 0 1rem; }
+.filters { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)) auto; gap: .75rem 1rem; align-items: end; }
+.filters .f { display: flex; flex-direction: column; gap: .25rem; min-width: 0; }
+.filters ui5-input, .filters ui5-select, .filters ui5-multi-input, .filters ui5-date-range-picker { width: 100%; }
+.filters .go { justify-content: flex-end; }
+.content { padding: 1rem 2rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.tablecard { background: var(--sapGroup_ContentBackground); border-radius: var(--sapElement_BorderCornerRadius, .75rem); box-shadow: var(--sapContent_Shadow0); overflow: hidden; }
+.tbar { --_ui5_bar_base_height: 3rem; }
+.sectiontitle { font-family: var(--sapFontHeaderFamily); font-size: var(--sapFontHeader5Size); font-weight: 700; color: var(--sapGroup_TitleTextColor); margin: .5rem 0 .25rem; }
+.card { background: var(--sapGroup_ContentBackground); border-radius: var(--sapElement_BorderCornerRadius, .75rem); box-shadow: var(--sapContent_Shadow0); padding: 1rem 1.25rem 1.25rem; }
+.card h3 { margin: 0 0 .75rem; font-family: var(--sapFontHeaderFamily); font-size: var(--sapFontHeader6Size); color: var(--sapGroup_TitleTextColor); display: flex; justify-content: space-between; align-items: center; }
+.kv { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem 2rem; }
+.kv .row { display: flex; align-items: center; gap: .5rem; }
+.kv .row ui5-label { min-width: 11rem; }
+.num { font-variant-numeric: tabular-nums; }
+.right { text-align: right; justify-content: flex-end; }

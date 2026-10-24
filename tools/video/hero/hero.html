@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GCD hero animation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600&family=Roboto+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1600px; height: 1000px; overflow: hidden; }
+  body { font-family: 'Google Sans Flex', system-ui, sans-serif; color: #202124; background: #FAFAF8; -webkit-font-smoothing: antialiased; }
+  .ms { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; display: inline-block; -webkit-font-feature-settings: 'liga'; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+  #stage { position: absolute; inset: 0; }
+  #box { position: absolute; left: 370px; top: 250px; width: 860px; border-radius: 30px; padding: 2px;
+         background: linear-gradient(100deg, #C9B6E4 0%, #9DB8F5 30%, #A8D8B4 55%, #F5D88E 78%, #F2B39A 100%);
+         box-shadow: 0 30px 70px -30px rgba(60, 64, 120, .35); }
+  #boxIn { border-radius: 28px; background: rgba(255,255,255,.96); height: 172px; padding: 34px 40px; display: flex; gap: 14px; align-items: flex-start; }
+  #field { font-size: 34px; line-height: 40px; display: flex; align-items: center; min-height: 40px; }
+  #ph { color: #5F6368; }
+  #typed { color: #202124; white-space: pre; }
+  #chip { display: none; background: #E8F0FE; color: #1A57C9; font-weight: 500; font-size: 28px; border-radius: 10px; padding: 2px 14px; margin-right: 12px; }
+  #caret { width: 2px; height: 36px; background: #1A73E8; margin-left: 2px; }
+  #menu { position: absolute; left: 372px; top: 444px; width: 856px; border-radius: 22px; background: #FFFFFF; border: 1px solid #E3E5EA;
+          box-shadow: 0 24px 60px -24px rgba(32,33,36,.28); overflow: hidden; transform-origin: 50% 0; }
+  .mh { padding: 22px 30px 18px; border-bottom: 1px solid #ECEDEF; }
+  .mh b { display: block; font-size: 22px; font-weight: 600; }
+  .mh span { display: block; font-size: 17px; color: #5F6368; margin-top: 4px; }
+  .it { display: flex; align-items: center; gap: 18px; padding: 15px 30px; transition: none; }
+  .ic { width: 48px; height: 48px; border-radius: 12px; background: #EAF1FD; color: #1A73E8; display: flex; align-items: center; justify-content: center; }
+  .tt { flex: 1; }
+  .tt b { display: block; font-size: 21px; font-weight: 500; }
+  .tt span { display: block; font-size: 17px; color: #5F6368; margin-top: 2px; }
+  .meta { font-size: 17px; color: #5F6368; }
+  .mf { border-top: 1px solid #ECEDEF; padding: 16px; text-align: center; color: #1A73E8; font-size: 19px; font-weight: 500; }
+  #cursor { position: absolute; width: 34px; height: 34px; left: 0; top: 0; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0,0,0,.25)); }
+  #ripple { position: absolute; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: rgba(26,115,232,.25); opacity: 0; }
+  #status { position: absolute; left: 372px; top: 448px; font-size: 19px; color: #1A57C9; display: flex; align-items: center; gap: 12px; opacity: 0; }
+  .spin { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid #C6D6FB; border-top-color: #1A73E8; }
+  #detail { position: absolute; left: 140px; top: 90px; width: 1320px; height: 820px; border-radius: 22px; background: #FFFFFF; border: 1px solid #E3E5EA; box-shadow: 0 30px 80px -30px rgba(60,64,120,.35); overflow: hidden; opacity: 0; }
+  #detail .bar { height: 64px; border-bottom: 1px solid #ECEDEF; display: flex; align-items: center; gap: 28px; padding: 0 28px; font-size: 18px; color: #3C4043; }
+  #detail .gl { font-size: 26px; font-weight: 500; letter-spacing: -0.3px; }
+  #detail .pill { border: 1px solid #DADCE0; border-radius: 8px; padding: 6px 14px; color: #1A73E8; font-size: 16px; }
+  #detail .body { display: flex; gap: 40px; padding: 40px 56px; background: #F8F9FA; height: 756px; }
+  #detail .main { flex: 1; background: #FFFFFF; border: 1px solid #E8EAED; border-radius: 18px; padding: 36px 44px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  #detail .crumb { font-size: 18px; color: #5F6368; }
+  #detail .title { display: flex; align-items: center; gap: 14px; font-size: 54px; font-weight: 500; letter-spacing: -1px; color: #202124; }
+  #detail .tag { font-size: 15px; font-weight: 500; color: #C5221F; background: #FCE8E6; border: 1px solid #F6AEA9; border-radius: 999px; padding: 4px 12px; letter-spacing: .3px; }
+  #detail .h { font-size: 30px; font-weight: 500; margin-top: 10px; }
+  #detail .ov { margin: 0; font-size: 19px; line-height: 1.55; color: #3C4043; max-width: 760px; }
+  #detail .exec { background: #1A73E8; color: #fff; font-size: 21px; font-weight: 500; border-radius: 999px; padding: 14px 34px; margin-top: 6px; }
+  #detail .tabs { display: flex; gap: 26px; font-size: 17px; color: #5F6368; border-bottom: 1px solid #E8EAED; width: 100%; padding-bottom: 10px; margin-top: 8px; }
+  #detail .tabs .on { color: #1A73E8; border-bottom: 2px solid #1A73E8; padding-bottom: 8px; margin-bottom: -12px; }
+  #detail .cmd { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 18px; background: #F8F9FA; border-radius: 10px; padding: 14px 18px; width: 100%; color: #202124; }
+  #detail .toc { width: 270px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; color: #5F6368; border-left: 3px solid #1A73E8; padding: 6px 0 6px 18px; align-self: flex-start; margin-top: 120px; }
+  #detail .toc b { font-size: 14px; letter-spacing: 1px; color: #3C4043; }
+  #detail .toc .on { color: #1A73E8; font-weight: 500; }
+  #detail .toc .i { padding-left: 14px; } #detail .toc .ii { padding-left: 26px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="blob" id="b1" style="width:620px;height:620px;background:#9DB8F5;opacity:.38"></div>
+  <div class="blob" id="b2" style="width:560px;height:560px;background:#F2B39A;opacity:.30"></div>
+  <div class="blob" id="b3" style="width:600px;height:600px;background:#F5D88E;opacity:.32"></div>
+  <div class="blob" id="b4" style="width:540px;height:540px;background:#A8D8B4;opacity:.32"></div>
+  <div class="blob" id="b5" style="width:460px;height:460px;background:#C9B6E4;opacity:.30"></div>
+
+  <div id="box"><div id="boxIn">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3C4043" stroke-width="2" stroke-linecap="round" style="flex:none; margin-top:0">
+      <path d="M11 4.5a6.5 6.5 0 1 0 6.1 4.3"/><path d="M16 16l4.5 4.5"/>
+      <path d="M17.5 2.5v5M15 5h5" stroke-width="1.8"/>
+    </svg>
+    <div id="field"><span id="chip">/fix-403-forbidden</span><span id="ph">Type / for Skills</span><span id="typed"></span><span id="caret"></span></div>
+  </div></div>
+
+  <div id="menu">
+    <div class="mh"><b>Documentation Skills</b><span>Discover skills you can install in your agent or CLI</span></div>
+    <div class="it" id="i0"><div class="ic"><span class="ms">build</span></div><div class="tt"><b>Fix 403 Forbidden Access</b><span>Restore access to an endpoint</span></div><div class="meta">Troubleshooting · 5m</div></div>
+    <div class="it" id="i1"><div class="ic"><span class="ms">terminal</span></div><div class="tt"><b>gcloud Commands Quick Reference</b><span>Copy-ready snippets</span></div><div class="meta">Command Reference · 5m</div></div>
+    <div class="it" id="i2"><div class="ic"><span class="ms">speed</span></div><div class="tt"><b>Optimize BigQuery Query Performance</b><span>Lower bytes billed</span></div><div class="meta">Learning Path · 45m</div></div>
+    <div class="it" id="i3"><div class="ic"><span class="ms">school</span></div><div class="tt"><b>Onboarding to Google Cloud</b><span>First-time GCP setup path</span></div><div class="meta">Task Guide · 20m</div></div>
+    <div class="mf">Browse all skills →</div>
+  </div>
+
+  <div id="status"><span class="spin" id="spin"></span><span>Running Skill with your agent · grounded in Google Cloud docs</span></div>
+
+  <div id="detail">
+    <div class="bar"><span class="gl"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC04">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b> <span style="color:#5F6368;font-weight:400">Cloud</span></span><span class="nav">Technology areas</span><span class="nav">Cross-product tools</span><span class="nav">Skills</span><span style="flex:1"></span><span class="pill">Console</span></div>
+    <div class="body">
+      <div class="main">
+        <div class="crumb">Home &nbsp;›&nbsp; Skill Library &nbsp;›&nbsp; Skill</div>
+        <div class="title" id="dtitle"><span>Fix 403 Forbidden Access</span><svg width="44" height="52" viewBox="0 0 24 28" fill="none" stroke="#202124" stroke-width="2" stroke-linejoin="round"><path d="M14 2L4 16h7l-2 10 11-15h-7z"/></svg></div>
+        <span class="tag">TROUBLESHOOTING</span>
+        <div class="h">Overview</div>
+        <p class="ov">This skill provides a structured troubleshooting path for resolving a 403 Forbidden error when calling a Vertex AI or Gemini Enterprise endpoint. It covers identity detection, IAM policy inspection, and role binding to restore access.</p>
+        <span class="exec" id="exec">Execute</span>
+        <div class="tabs"><span>Antigravity</span><span>Claude Code</span><span>Codex</span><span>Cursor</span><span class="on">Gemini CLI</span><span>Other agents</span></div>
+        <div class="cmd">gemini skills run fix-403-error</div>
+      </div>
+      <div class="toc"><b>ON THIS PAGE</b><span class="on">Overview</span><span>What this skill does</span><span class="i">Prerequisites</span><span class="i">Steps</span><span class="ii">1. Identify the calling identity</span><span class="ii">2. Check current IAM roles</span><span class="ii">3. Grant Vertex AI User role</span><span class="ii">4. Re-run to verify access</span><span class="i">Validation logic</span><span>Documentation sources</span></div>
+    </div>
+  </div>
+
+  <div id="ripple"></div>
+  <svg id="cursor" viewBox="0 0 24 24"><path d="M5 2.5l14 10.2-6.1.9 3.6 7.1-2.7 1.4-3.6-7.2L5 19.4z" fill="#202124" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+</div>
+
+<script>
+const D = 12.0;
+const $ = id => document.getElementById(id);
+const clamp = (x, a=0, b=1) => Math.max(a, Math.min(b, x));
+const ease = x => x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x+2, 3)/2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a)));
+const lerp = (a, b, p) => a + (b - a) * p;
+const CLICK = 5.4, SW0 = 5.6, SW1 = 6.05, OUT0 = 11.2, OUT1 = 11.8;
+let K = [];
+function setupKeys() {
+  const ys = [0,1,2,3].map(i => { const r = $('i'+i).getBoundingClientRect(); return r.top + r.height/2; });
+  const ex = $('exec').getBoundingClientRect();
+  K = [
+    [0.0, 1500, 980], [2.7, 1500, 980],
+    [3.3, 820, ys[2]], [3.7, 760, ys[2]],
+    [4.1, 880, ys[1]], [4.4, 840, ys[1]],
+    [4.9, 700, ys[0]], [5.4, 700, ys[0]],
+    [6.6, 900, 640], [8.6, ex.left + ex.width/2 + 30, ex.top + ex.height/2 - 30], [10.2, ex.left + ex.width/2 + 30, ex.top + ex.height/2 - 30],
+    [11.2, 1300, 900], [12.0, 1500, 980]
+  ];
+}
+function cursorAt(t) {
+  for (let i = 0; i < K.length - 1; i++) {
+    const [t0, x0, y0] = K[i], [t1, x1, y1] = K[i+1];
+    if (t >= t0 && t <= t1) { const p = ease((t - t0) / (t1 - t0 || 1)); return [lerp(x0, x1, p), lerp(y0, y1, p)]; }
+  }
+  return [K[K.length-1][1], K[K.length-1][2]];
+}
+const TEXT = '/403 error', T0 = 0.9, DT = 0.11;
+function render(t) {
+  t = ((t % D) + D) % D;
+  const w = t / D * Math.PI * 2;
+  const pos = [[-120, -160, 60, 40], [1080, -120, -50, 50], [180, 640, 60, -40], [1000, 600, -60, -30], [620, 120, 40, 50]];
+  pos.forEach(([x, y, dx, dy], i) => { const b = $('b'+(i+1)); b.style.left = (x + dx * Math.sin(w + i)) + 'px'; b.style.top = (y + dy * Math.cos(w + i * 1.3)) + 'px'; });
+
+  // scene 1: prompt + menu
+  // "/" first, short pause, then the rest
+  const T1 = T0 + 0.45;
+  const n = t < T0 ? 0 : (t < T1 ? 1 : clamp(1 + Math.floor((t - T1) / DT) + 1, 1, TEXT.length));
+  const s = TEXT.slice(0, n);
+  $('typed').textContent = s;
+  $('ph').style.display = s ? 'none' : 'inline';
+  $('chip').style.display = 'none';
+  const typing = t >= T0 - 0.05 && t <= T0 + 0.45 + TEXT.length * DT + 0.05;
+  $('caret').style.opacity = typing ? 1 : (Math.floor(t * 2) % 2 === 0 ? 1 : 0);
+  const s1 = Math.min(prog(t, 0, 0.4), 1 - prog(t, SW0, SW1));
+  const box = $('box');
+  box.style.opacity = s1;
+  box.style.transform = `translateY(${-30 * prog(t, SW0, SW1)}px) scale(${1 - 0.03 * prog(t, SW0, SW1)})`;
+  const open = prog(t, 2.2, 2.55);
+  const m = $('menu');
+  m.style.opacity = Math.min(open, s1);
+  m.style.transform = `translateY(${(1 - open) * -12 - 30 * prog(t, SW0, SW1)}px) scale(${(0.98 + 0.02 * open) * (1 - 0.03 * prog(t, SW0, SW1))})`;
+  const [cx, cy] = cursorAt(t);
+  [0,1,2,3].forEach(i => {
+    const r = $('i'+i).getBoundingClientRect();
+    const hov = open > 0.9 && t < CLICK + 0.2 && cy >= r.top && cy <= r.bottom && cx >= r.left && cx <= r.right;
+    const pressed = i === 0 && t >= CLICK && t < SW1;
+    $('i'+i).style.background = pressed ? '#DCE7FB' : (hov ? '#F1F4FA' : 'transparent');
+  });
+  $('status').style.opacity = 0;
+
+  // scene 2: Skill detail page
+  const s2 = Math.min(prog(t, SW1 - 0.1, SW1 + 0.5), 1 - prog(t, OUT0, OUT1));
+  const d = $('detail');
+  d.style.opacity = s2;
+  d.style.transform = `translateY(${(1 - prog(t, SW1 - 0.1, SW1 + 0.5)) * 40}px)`;
+  const hovExec = t > 8.5 && t < 10.3;
+  $('exec').style.background = hovExec ? '#1666CC' : '#1A73E8';
+  $('exec').style.boxShadow = hovExec ? '0 6px 16px -6px rgba(26,115,232,.6)' : 'none';
+  // title highlight sweep when page lands
+  const hl = prog(t, SW1 + 0.1, SW1 + 0.9);
+  $('dtitle').style.backgroundImage = `linear-gradient(transparent 70%, rgba(138,180,248,${0.45 * (1 - prog(t, 8.0, 9.0))}) 70%)`;
+  $('dtitle').style.backgroundSize = `${hl * 100}% 100%`;
+  $('dtitle').style.backgroundRepeat = 'no-repeat';
+
+  // cursor + ripple
+  const c = $('cursor');
+  const press = t >= CLICK && t < CLICK + 0.15 ? 0.85 : 1;
+  c.style.transform = `translate(${cx - 6}px, ${cy - 4}px) scale(${press})`;
+  c.style.opacity = Math.min(prog(t, 2.6, 2.9), 1 - prog(t, 11.0, 11.5));
+  const rp = clamp((t - CLICK) / 0.5);
+  const rip = $('ripple');
+  rip.style.left = cx + 'px'; rip.style.top = cy + 'px';
+  rip.style.opacity = t >= CLICK && rp < 1 ? (1 - rp) : 0;
+  rip.style.transform = `scale(${0.4 + rp * 1.4})`;
+}
+window.render = render;
+window.setupKeys = setupKeys;
+document.fonts.ready.then(() => { setupKeys(); render(0); window.__ready = true; });
+if (!location.search.includes('capture')) {
+  const start = performance.now();
+  const loop = () => { if (window.__ready) render((performance.now() - start) / 1000); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>

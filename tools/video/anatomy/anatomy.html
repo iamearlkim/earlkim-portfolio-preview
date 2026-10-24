@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anatomy of a Skill — animation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1536px; height: 960px; overflow: hidden; background: transparent; }
+  body { font-family: 'Google Sans Flex', system-ui, sans-serif; color: #202124; -webkit-font-smoothing: antialiased; }
+  #ring { position: absolute; left: 0; top: 0; width: 1536px; height: 960px; border-radius: 25px;
+          background: conic-gradient(from 200deg at 50% 50%, #A142F4, #4285F4 18%, #4285F4 30%, #34A853 42%, #34A853 50%, #FBBC04 60%, #FA7B17 68%, #EA4335 78%, #A142F4 92%, #A142F4); }
+  #card { position: absolute; left: 3px; top: 3px; width: 1530px; height: 954px; border-radius: 22px; background: #FFFFFF; overflow: hidden; }
+  #vp { position: absolute; left: 0; top: 0; width: 1530px; height: 954px; overflow: hidden; background: #FFFFFF; }
+  #page { position: absolute; left: 0; top: 0; transform-origin: 0 0; width: 1440px; height: 4711px; background: #FFFFFF; }
+  #page img { position: absolute; left: 0; top: 56px; width: 1440px; height: 4655px; }
+  #chrome { position: absolute; left: 0; top: 0; width: 1440px; height: 56px; background: #F1F3F4; border-bottom: 1px solid #DADCE0; display: flex; align-items: center; gap: 14px; padding: 0 16px; }
+  #chrome .dots { display: flex; gap: 8px; margin-right: 6px; }
+  #chrome .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+  #chrome svg { flex: none; }
+  #addr { flex: 1; height: 36px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 15px; color: #202124; }
+  #addr .host { color: #202124; } #addr .path { color: #5F6368; }
+  #hl { position: absolute; border-radius: 14px; box-shadow: 0 0 0 4000px rgba(32,33,36,.30); pointer-events: none; }
+  #chipM { position: absolute; display: flex; align-items: center; gap: 10px; background: #1A73E8; color: #fff; font-size: 20px; font-weight: 500;
+           border-radius: 999px; padding: 10px 18px; box-shadow: 0 10px 24px -10px rgba(26,115,232,.7); white-space: nowrap; }
+  #label { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: #FFFFFF; border-top: 1px solid #E3E5EA; }
+  #lbin { height: 100%; display: grid; grid-template-columns: 520px 1fr; align-items: center; gap: 48px; padding: 0 56px; }
+  #lbin .l { display: flex; flex-direction: column; gap: 6px; }
+  #lbin .r { display: flex; flex-direction: column; gap: 8px; border-left: 1px solid #E3E5EA; padding-left: 48px; }
+  #num { font-size: 15px; font-weight: 600; color: #80868B; letter-spacing: .4px; }
+  #ttl { font-size: 34px; font-weight: 600; letter-spacing: -.3px; }
+  #q { font-size: 24px; font-weight: 500; color: #3C4043; }
+  #d { font-size: 18px; line-height: 1.45; color: #5F6368; }
+  #cursor { position: absolute; width: 34px; height: 34px; left: 0; top: 0; filter: drop-shadow(0 2px 3px rgba(0,0,0,.25)); }
+  #ripple { position: absolute; width: 70px; height: 70px; margin: -35px 0 0 -35px; border-radius: 50%; background: rgba(26,115,232,.28); opacity: 0; }
+</style>
+</head>
+<body>
+<div id="ring"></div>
+<div id="card">
+  <div id="vp">
+    <div id="page">
+      <div id="chrome">
+        <div class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BDC1C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+        <div id="addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          <span><span class="host">docs.cloud.google.com</span><span class="path">/skills/fix-403-forbidden-access</span></span>
+          <span style="flex:1"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+        </div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#5F6368"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+      </div>
+      <img id="shot" src="detail@3x.png" alt="">
+    </div>
+    <div id="hl"></div>
+    <div id="chipM"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Matches your issue: “403 error”</div>
+    <div id="label">
+            <div id="lbin"><div class="l"><span id="num"></span><span id="ttl"></span></div><div class="r"><span id="q"></span><span id="d"></span></div></div>
+    </div>
+    <div id="ripple"></div>
+    <svg id="cursor" viewBox="0 0 24 24"><path d="M5 2.5l14 10.2-6.1.9 3.6 7.1-2.7 1.4-3.6-7.2L5 19.4z" fill="#202124" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+  </div>
+</div>
+<script>
+const VW = 1530, VH = 954, FH = 150, PW = 1440, PH = 4711, CH = 56, D = 30;
+const $ = id => document.getElementById(id);
+const clamp = (x, a=0, b=1) => Math.max(a, Math.min(b, x));
+const ease = x => x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x+2, 3)/2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a)));
+const lerp = (a, b, p) => a + (b - a) * p;
+
+// camera keys: [time, cx, cy, scale]  (page coords of viewport centre)
+const OV = [720, 300, 1.0625];
+const CAM = [
+  [0.0, ...OV], [2.0, ...OV],
+  [2.9, 574, 350, 1.75], [6.2, 574, 350, 1.75],      // 01 title
+  [7.1, 626, 455, 1.4],  [10.4, 626, 455, 1.4],      // 02 overview
+  [11.3, 627, 1335, 1.45], [14.4, 627, 1335, 1.45],  // 03 prerequisites
+  [15.3, 628, 1720, 1.3], [16.0, 628, 1720, 1.3], [19.4, 628, 3020, 1.3], [20.2, 628, 3020, 1.3], // 04 steps pan
+  [21.1, 617, 756, 1.5], [24.2, 617, 756, 1.5],    // 05 agent tabs
+  [25.1, 443, 655, 2.3], [28.0, 443, 655, 2.3],      // 06 execute
+  [29.0, ...OV], [30.0, ...OV]
+];
+// scenes: [start, end, highlight rect, label]
+const SC = [
+  [2.9, 6.2, [143, 280, 535, 60, 8], ['01', 'Context recognition', 'What problem is this?', 'The site recognizes the issue — “403 error” — and matches the Skill whose title names it.']],
+  [7.1, 10.4, [143, 351, 932, 190, 8], ['02', 'Skill overview', 'What is this Skill for?', 'What it fixes and what it changes, before any steps.']],
+  [11.3, 14.4, [164, 1271, 890, 126, 8], ['03', 'Prerequisites', 'What do I need first?', 'The roles, tools and test script the Skill expects.']],
+  [16.0, 20.2, [164, 1405, 890, 1965, 8], ['04', 'Step-by-step instructions', 'What will the agent do?', 'Four steps from the official docs, each with the command to run.']],
+  [21.1, 24.2, [151, 700, 916, 112, 8], ['05', 'Work environment', 'Which agent will run it?', 'The Skill runs in the agent you already work in — Antigravity, Claude Code, Codex, Cursor or Gemini CLI.']],
+  [25.1, 28.0, [151, 620, 128, 48, 24], ['06', 'Call to execute', 'How do I execute it right away?', 'One click hands the Skill to the agent — no copying steps by hand.']]
+];
+function camAt(t) {
+  for (let i = 0; i < CAM.length - 1; i++) {
+    const a = CAM[i], b = CAM[i+1];
+    if (t >= a[0] && t <= b[0]) { const p = ease((t - a[0]) / (b[0] - a[0] || 1)); return [lerp(a[1], b[1], p), lerp(a[2], b[2], p), lerp(a[3], b[3], p)]; }
+  }
+  return CAM[CAM.length-1].slice(1);
+}
+function render(t) {
+  t = ((t % D) + D) % D;
+  let [cx, cy, s] = camAt(t); cy += CH;
+  let ox = cx - VW / s / 2, oy = cy - (VH - FH) / s / 2;
+  ox = clamp(ox, Math.min(0, PW - VW / s), Math.max(0, PW - VW / s));
+  oy = clamp(oy, 0, PH - VH / s);
+  if (PW * s < VW) ox = -(VW / s - PW) / 2;
+  $('page').style.transform = `scale(${s}) translate(${-ox}px, ${-oy}px)`;
+  const toV = (x, y) => [(x - ox) * s, (y + CH - oy) * s];
+
+  // active scene
+  let sc = null, a = 0;
+  for (const S of SC) {
+    const [t0, t1] = S;
+    const v = Math.min(prog(t, t0 + 0.05, t0 + 0.45), 1 - prog(t, t1 - 0.35, t1 + 0.05));
+    if (v > 0) { sc = S; a = v; }
+  }
+  const fv = Math.min(prog(t, 2.6, 3.1), 1 - prog(t, 28.0, 28.6));
+  const hl = $('hl'), lb = $('label');
+  if (sc) {
+    const [x, y, w, h, rr] = sc[2];
+    const [vx, vy] = toV(x, y);
+    hl.style.left = vx + 'px'; hl.style.top = vy + 'px'; hl.style.width = w * s + 'px'; hl.style.height = h * s + 'px'; hl.style.borderRadius = rr * s + 'px';
+    hl.style.opacity = a;
+    const [n, ti, q, d] = sc[3];
+    $('num').textContent = n; $('ttl').textContent = ti; $('q').textContent = q; $('d').textContent = d;
+    lb.style.opacity = a; lb.style.transform = 'none'; $('lbin').style.opacity = 1;
+  } else { hl.style.opacity = 0; lb.style.opacity = 0; }
+
+  // "matches your issue" chip on scene 01
+  const cA = Math.min(prog(t, 3.5, 3.9), 1 - prog(t, 5.85, 6.2));
+  const [chx, chy] = toV(300, 352);
+  const chip = $('chipM');
+  chip.style.left = chx + 'px'; chip.style.top = chy + 'px'; chip.style.opacity = cA;
+  chip.style.transform = `scale(${0.9 + 0.1 * cA})`;
+
+  // cursor on scene 06: glide to Execute, press
+  const press = 26.6;
+  const cIn = prog(t, 25.3, 26.3);
+  const [ex, ey] = toV(215, 644);
+  const cur = $('cursor');
+  const px = lerp(VW - 120, ex + 10, cIn), py = lerp(VH - 60, ey + 4, cIn);
+  const pr = t >= press && t < press + 0.18 ? 0.85 : 1;
+  cur.style.transform = `translate(${px}px, ${py}px) scale(${pr})`;
+  cur.style.opacity = Math.min(prog(t, 25.2, 25.5), 1 - prog(t, 27.7, 28.1));
+  const rp = clamp((t - press) / 0.55);
+  const rip = $('ripple');
+  rip.style.left = (px + 6) + 'px'; rip.style.top = (py + 4) + 'px';
+  rip.style.opacity = t >= press && rp < 1 ? (1 - rp) : 0;
+  rip.style.transform = `scale(${0.4 + rp * 1.5})`;
+}
+window.render = render;
+Promise.all([document.fonts.ready, new Promise(r => { const i = $('shot'); i.complete ? r() : i.onload = r; })]).then(() => { render(0); window.__ready = true; });
+if (!location.search.includes('capture')) {
+  const start = performance.now();
+  const loop = () => { if (window.__ready) render((performance.now() - start) / 1000); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+window.setupKeys = () => {};
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Artboard-mosb.dc.html": {
+      "expand": "fill",
+      "h": 6000,
+      "is_interactive": true,
+      "title": "Home — desktop",
+      "w": 1420,
+      "x": 0,
+      "y": 0
+    },
+    "CaseStudy-BHP.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — BHP",
+      "w": 1420,
+      "x": 22500,
+      "y": 0
+    },
+    "CaseStudy-Clerro.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — Clerro",
+      "w": 1420,
+      "x": 4500,
+      "y": 0
+    },
+    "CaseStudy-Doosan.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — Doosan",
+      "w": 1420,
+      "x": 3000,
+      "y": 0
+    },
+    "CaseStudy-FPA.dc.html": {
+      "expand": "fill",
+      "h": 5200,
+      "is_interactive": true,
+      "title": "Case study — Financial planning (overview)",
+      "w": 1420,
+      "x": 21000,
+      "y": 0
+    },
+    "CaseStudy-FoodDelivery.dc.html": {
+      "expand": "fill",
+      "h": 7600,
+      "is_interactive": true,
+      "title": "Case study — Food delivery",
+      "w": 1420,
+      "x": 25500,
+      "y": 0
+    },
+    "CaseStudy-Gogoro.dc.html": {
+      "expand": "fill",
+      "h": 6400,
+      "is_interactive": true,
+      "title": "Case study — Gogoro",
+      "w": 1420,
+      "x": 27000,
+      "y": 0
+    },
+    "CaseStudy-GoogleCloud.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — Google Cloud docs (v2, from Earl’s draft)",
+      "w": 1420,
+      "x": 7500,
+      "y": 0
+    },
+    "CaseStudy-Hanon.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — Hanon Systems",
+      "w": 1420,
+      "x": 19500,
+      "y": 0
+    },
+    "CaseStudy-JGSummit.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — JG Summit",
+      "w": 1420,
+      "x": 24000,
+      "y": 0
+    },
+    "CaseStudy-Samsung.dc.html": {
+      "expand": "fill",
+      "h": 7000,
+      "is_interactive": true,
+      "title": "Case study — Samsung platforms (overview)",
+      "w": 1420,
+      "x": 10500,
+      "y": 0
+    },
+    "CaseStudy-SamsungDSCloud.dc.html": {
+      "expand": "fill",
+      "h": 5200,
+      "is_interactive": true,
+      "title": "Samsung · DS cloud platform",
+      "w": 1420,
+      "x": 15000,
+      "y": 0
+    },
+    "CaseStudy-SamsungDXRisk.dc.html": {
+      "expand": "fill",
+      "h": 5200,
+      "is_interactive": true,
+      "title": "Samsung · DX risk management",
+      "w": 1420,
+      "x": 16500,
+      "y": 0
+    },
+    "CaseStudy-SamsungESG.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Samsung · ESG carbon footprint",
+      "w": 1420,
+      "x": 13500,
+      "y": 0
+    },
+    "CaseStudy-SamsungEcom.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Samsung · E-commerce data management",
+      "w": 1420,
+      "x": 1500,
+      "y": 0
+    },
+    "CaseStudy-SamsungProcurement.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Samsung · Procurement (N-ERP)",
+      "w": 1420,
+      "x": 12000,
+      "y": 0
+    },
+    "CaseStudy-SamsungShipment.dc.html": {
+      "expand": "fill",
+      "h": 5200,
+      "is_interactive": true,
+      "title": "Samsung · Shipment",
+      "w": 1420,
+      "x": 18000,
+      "y": 0
+    },
+    "CaseStudy-GoogleCloud-v1.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — Google Cloud docs (v1, previous)",
+      "w": 1420,
+      "x": 6000,
+      "y": 0
+    },
+    "CaseStudy-GoogleCloud-v3.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study — Google Cloud docs (v3, combined)",
+      "w": 1420,
+      "x": 9000,
+      "y": 0
+    },
+    "Cover-GoogleCloud.dc.html": {
+      "expand": "fill",
+      "h": 620,
+      "is_interactive": true,
+      "title": "Home card cover — Agent Skills (draft)",
+      "w": 1200,
+      "x": 9000,
+      "y": -760
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-21T18:13:15.535Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "file": "Artboard-mosb.dc.html",
+    "view": "focused"
+  },
+  "notes": {},
+  "order": [
+    "Artboard-mosb.dc.html",
+    "CaseStudy-SamsungEcom.dc.html",
+    "CaseStudy-Doosan.dc.html",
+    "CaseStudy-Clerro.dc.html",
+    "CaseStudy-GoogleCloud-v1.dc.html",
+    "CaseStudy-GoogleCloud.dc.html",
+    "CaseStudy-GoogleCloud-v3.dc.html",
+    "Cover-GoogleCloud.dc.html",
+    "CaseStudy-Samsung.dc.html",
+    "CaseStudy-SamsungProcurement.dc.html",
+    "CaseStudy-SamsungESG.dc.html",
+    "CaseStudy-SamsungDSCloud.dc.html",
+    "CaseStudy-SamsungDXRisk.dc.html",
+    "CaseStudy-SamsungShipment.dc.html",
+    "CaseStudy-Hanon.dc.html",
+    "CaseStudy-FPA.dc.html",
+    "CaseStudy-BHP.dc.html",
+    "CaseStudy-JGSummit.dc.html",
+    "CaseStudy-FoodDelivery.dc.html",
+    "CaseStudy-Gogoro.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Page 1"
+    }
+  ],
+  "title": "Earl Kim Portfolio"
+}
